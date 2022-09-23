@@ -82,7 +82,7 @@ class AccViewSet(viewsets.ModelViewSet):
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.all()
+    queryset = Question.objects.all().order_by('?')[:25]
     serializer_class = QuestionSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['quize']
