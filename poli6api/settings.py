@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-e!+e&#si58lgy#^#@038*j0zb95$ftr6r=$uxb9=%1447601by
 DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]','poli6api.herokuapp.com','https://poli6api.herokuapp.com/']
 
 
 # Application definition
