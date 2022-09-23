@@ -57,10 +57,11 @@ class AnswareSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     a_question = AnswareSerializer(read_only=True, many=True)
+    correct_answare = serializers.ReadOnlyField(source='correct_answare.id')
 
     class Meta:
         model = Question
-        fields = ['text', 'quize', 'a_question']
+        fields = ['text', 'quize', 'a_question','correct_answare']
 
 
 # ViewSets define the view behavior.

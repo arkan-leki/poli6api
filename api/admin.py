@@ -1,15 +1,23 @@
 from django.contrib import admin
 
-from api.models import Account, Answare, Question, Quize, Result
+from api.models import Account, Question, Answare, Quize, Result
 
 # Register your models here.
 admin.site.register(Account)
-admin.site.register(Quize)
+
+class QuizeAdmin(admin.ModelAdmin):
+    model = Quize
+    list_display = ['category', 'imageURL', 'questions']
+
+admin.site.register(Quize,QuizeAdmin)
 
 class AnswaresInline(admin.TabularInline):
     model = Answare
 
 class QuestionAdmin(admin.ModelAdmin):
+    model = Question
+    list_display = ('text', 'quize', 'correct_answare')
+    list_filter = ['quize']
     inlines = [AnswaresInline]
 
 admin.site.register(Question, QuestionAdmin)

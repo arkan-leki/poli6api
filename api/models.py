@@ -84,14 +84,18 @@ class Account(AbstractBaseUser):
     def scores(self):
         score = 0
         for scores in self.highscore:
-            score = score +  self.highscore[scores]
+            score = score + self.highscore[scores]
         return score
+
+    class Meta:
+        verbose_name_plural = "هه‌ژمار"
 
 
 class Quize(models.Model):
-    category = models.CharField(max_length=110)
-    imageURL = models.CharField(max_length=300, null=True, blank=True)
-    questions = models.CharField(max_length=11, null=True, blank=True)
+    category = models.CharField("ناو", max_length=110)
+    imageURL = models.CharField("وێنە", max_length=300, null=True, blank=True)
+    questions = models.CharField(
+        "ژمارەی پرسیارەکان", max_length=11, null=True, blank=True)
 
     def __str__(self):
         return str(self.category)
@@ -103,30 +107,43 @@ class Quize(models.Model):
     def top_scores(self):
         return self.r_quize.all().filter(score__gte=0).order_by('-score')[:10]
 
+    class Meta:
+        verbose_name_plural = "وانەکان"
+
 
 class Question(models.Model):
-    text = models.CharField(max_length=200)
+    text = models.CharField("پرسیار", max_length=200)
     quize = models.ForeignKey(
-        Quize, related_name="q_quize", on_delete=models.CASCADE)
+        Quize, related_name="q_quize", on_delete=models.CASCADE, verbose_name="وانە")
 
     def __str__(self):
         return str(self.text)
 
+    @property
+    def correct_answare(self):
+        return self.a_question.get(correct=True)
+    
     def get_answare(self):
         return self.a_question.all()
 
+    class Meta:
+        verbose_name_plural = "پرسیارەکان"
+
 
 class Answare(models.Model):
-    text = models.CharField(max_length=200)
-    correct = models.BooleanField(default=False)
+    text = models.CharField("هەڵبژاردن", max_length=200)
+    correct = models.BooleanField("وەڵامی دروست", default=False)
     question = models.ForeignKey(
-        Question, related_name="a_question", on_delete=models.CASCADE)
+        Question, related_name="a_question", on_delete=models.CASCADE, verbose_name="prsyar")
 
     def __str__(self):
-        return f"quistion: {self.question.text}, asnware: {self.text} , correct: {self.correct}"
-
+        return str(self.text)
+    
     def __unicode__(self):
         return
+
+    class Meta:
+        verbose_name_plural = "وەڵامەکان"
 
 
 class Result(models.Model):
@@ -141,3 +158,6 @@ class Result(models.Model):
 
     def __unicode__(self):
         return
+
+    class Meta:
+        verbose_name_plural = "ئەنجامەکان"
