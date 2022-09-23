@@ -1,0 +1,20 @@
+{% extends "api/base.html" %}
+
+{% block content %}
+<ol class="flex flex-row space-x-2 p-2 bg-light text-dark " dir="rtl">
+    <li> پرسیارەکان</li>
+</ol>
+<div class="m-2 flex-1 md:flex w-full space-y-2 md:space-y-0  flex-row ">
+        <form method='GET' class="flex-1 text-center">
+            <input class="p-3 w-3/4 bg-gray-700" type='text' name='title' value='{{ request.GET.title }}'>
+            <input class="p-3 bg-green-700" type='submit' value="گەران">
+        </form>
+    {% comment %} <div role="button" class="mx-2 p-3  bg-green-700 text-center"><a href={% url 'myapp:storage-add' %}>زیادکردنی کالا</a></div> {% endcomment %}
+</div>
+
+<ul class="p-3 ">
+    {% for storage in object_list %}
+    <li class="bg-blue-900 p-3 w-full text-lg border-b-2 "><a href="">{{ storage.quize }} : {{ storage.text }} = {{ storage.correct_answare }} </a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

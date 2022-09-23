@@ -1,0 +1,63 @@
+<!--
+ * CoreUI - Open Source Bootstrap Admin Template
+ * @version v1.0.0-alpha.6
+ * @link http://coreui.io
+ * Copyright (c) 2017 creativeLabs Łukasz Holeczek
+ * @license MIT
+ -->
+ <!DOCTYPE html>
+ <html dir="rtl" lang="fa">
+ 
+ <head>
+     {% load static %}
+     <link rel="icon" type="image/x-icon" href="{% static 'img/photo_2022-08-31_15-47-15.jpg' %}">
+     <meta charset="utf-8">
+     <meta content="IE=edge" http-equiv="X-UA-Compatible">
+     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+     <meta content="CoreUI - Open Source Bootstrap Admin Template" name="description">
+     <meta content="Łukasz Holeczek" name="author">
+     <meta
+         content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js"
+         name="keyword">
+     <title>{% block title %}{% endblock title %}</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="static/font-awesome-4.7.0/css/font-awesome.min.css">
+     <style>
+         input {
+             padding: 0.9rem !important;
+             color: black;
+ 
+         }
+         option{
+             padding: 0.9rem !important;
+             color: black;
+         }
+         select {
+             padding: 0.9rem !important;
+             width: 100%;
+             color: black;
+         }
+     </style>
+ </head>
+ 
+ <body class="bg-black text-white">
+ 
+     <div class="h-20 bg-blue-900  bg-opacity-30 flex flex-row text-2xl md:text-3xl justify-between items-center p-3 border-b-2 border-cyan-500">
+         {% comment %} <img alt="image" class=" w-20 p-2  " src="{% static 'img/photo_2022-08-31_15-47-15.jpg' %}"> {% endcomment %}
+         <div class="flex-1">
+             <h3 > پرسیارەکانی پۆلی دوانزدە</h3>
+         </div>
+     </div>
+ 
+     <div class="p-3">
+         {% block content %} {% endblock content %}
+     </div>
+ 
+     <footer class="fixed bottom-0 w-full p-3 bg-black ">
+         <a href="#">Arkan Laki </a> © 2022 pylab
+         <span class="float-left">Powered by <a href="#">ArkanUI</a> </span>
+     </footer>
+ 
+ </body>
+ 
+ </html>

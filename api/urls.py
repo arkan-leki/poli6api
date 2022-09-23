@@ -3,9 +3,11 @@ from django.contrib.auth.models import User
 from rest_framework import serializers, viewsets, routers
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models.aggregates import Max, Sum
-
 from api.models import Account, Answare, Question, Quize, Result
 
+from api import views
+
+app_name = 'api'
 # Serializers define the API representation.
 
 
@@ -109,6 +111,7 @@ router.register(r'result', ResultViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', views.QuestionListView.as_view(), name='question-list'),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
