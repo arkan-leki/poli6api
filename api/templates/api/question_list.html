@@ -14,7 +14,7 @@
 
 <ul class="p-3 ">
     {% for storage in object_list %}
-    <li class="bg-blue-900 p-3 w-full text-lg border-b-2 "><a href="">{{ storage.quize }} : {{ storage.text }} = {{ storage.correct_answare }} </a></li>
+    <li class="bg-blue-900 p-3 w-full text-lg border-b-2 "><a href="">{{ storage.quize }} : {{ storage.text|safe }} = {{ storage.correct_answare }} </a></li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -60,10 +60,15 @@ class AnswareSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     a_question = AnswareSerializer(read_only=True, many=True)
     correct_answare = serializers.ReadOnlyField(source='correct_answare.id')
+    content = serializers.SerializerMethodField()
+
+    def get_content(self, instance):
+        from django.utils.safestring import mark_safe
+        return mark_safe(instance.text)
 
     class Meta:
         model = Question
-        fields = ['text', 'quize', 'a_question','correct_answare']
+        fields = ['content', 'quize', 'a_question','correct_answare']
 
 
 # ViewSets define the view behavior.
@@ -82,7 +87,7 @@ class AccViewSet(viewsets.ModelViewSet):
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.all().order_by('?')[:25]
+    queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['quize']

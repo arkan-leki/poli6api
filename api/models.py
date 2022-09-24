@@ -1,12 +1,9 @@
-import decimal
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.db.models.aggregates import Max, Sum
-from django.db.models import Q
+from django.db.models.aggregates import Max
+from ckeditor.fields import RichTextField
 
 # Create your models here.
-# Create your models here.
-
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -112,7 +109,7 @@ class Quize(models.Model):
 
 
 class Question(models.Model):
-    text = models.CharField("پرسیار", max_length=200)
+    text = RichTextField("پرسیار")
     quize = models.ForeignKey(
         Quize, related_name="q_quize", on_delete=models.CASCADE, verbose_name="وانە")
 
