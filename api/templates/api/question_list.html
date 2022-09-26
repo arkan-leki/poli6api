@@ -12,9 +12,28 @@
     {% comment %} <div role="button" class="mx-2 p-3  bg-green-700 text-center"><a href={% url 'myapp:storage-add' %}>زیادکردنی کالا</a></div> {% endcomment %}
 </div>
 
-<ul class="p-3 ">
+<ul class="p-3 w-full">
     {% for storage in object_list %}
-    <li class="bg-blue-900 p-3 w-full text-lg border-b-2 "><a href="">{{ storage.quize }} : {{ storage.text|safe }} = {{ storage.correct_answare }} </a></li>
+    <li class="bg-blue-900 {% if storage.correct_answare == '' %} bg-red-400 {% endif %} p-3 w-full text-lg border-b-2 flex-1 flex-col "><a href="">{{ storage.pk }}  {{ storage.quize }} : {{ storage.text|safe }} </a> <p class=" text-green-400  {% if storage.correct_answare == '' %} text-red-700 {% endif %}"> وەڵامی راست: {{ storage.correct_answare }} {% if storage.correct_answare == '' %} دیارینەکراوە {% endif %} </p></li>
     {% endfor %}
+    
+<div class="bg-cyan-900 flex flex-row space-x-3 p-2">
+    <span class="step-links">
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.paginator.num_pages }}" class=" text-xl text-green-400">last</a>
+        <a href="?page={{ page_obj.next_page_number }}" class=" text-xl text-green-400"><</a>
+    {% endif %}
+
+        <span class="text-base">
+            پەڕەی {{ page_obj.number }} لە {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class=" text-xl text-green-400">></a>
+        <a href="?page=1" class=" text-xl text-green-400">first</a>
+    {% endif %}
+
+    </span>
+</div>
 </ul>
 {% endblock %}

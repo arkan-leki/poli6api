@@ -5,6 +5,7 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
+
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:
@@ -112,6 +113,10 @@ class Question(models.Model):
     text = RichTextField("پرسیار")
     quize = models.ForeignKey(
         Quize, related_name="q_quize", on_delete=models.CASCADE, verbose_name="وانە")
+    date_create = models.DateField(
+        verbose_name="بەروار", auto_now_add=True, blank=True)
+    add_date = models.DateTimeField(
+        verbose_name='رێکەوت', auto_now=True, blank=True)
 
     def __str__(self):
         return str(self.text)
@@ -119,7 +124,7 @@ class Question(models.Model):
     @property
     def correct_answare(self):
         return self.a_question.get(correct=True)
-    
+
     def get_answare(self):
         return self.a_question.all()
 
@@ -135,7 +140,7 @@ class Answare(models.Model):
 
     def __str__(self):
         return str(self.text)
-    
+
     def __unicode__(self):
         return
 
