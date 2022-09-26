@@ -5,35 +5,43 @@
     <li> پرسیارەکان</li>
 </ol>
 <div class="m-2 flex-1 md:flex w-full space-y-2 md:space-y-0  flex-row ">
-        <form method='GET' class="flex-1 text-center">
-            <input class="p-3 w-3/4 bg-gray-700" type='text' name='title' value='{{ request.GET.title }}'>
-            <input class="p-3 bg-green-700" type='submit' value="گەران">
-        </form>
-    {% comment %} <div role="button" class="mx-2 p-3  bg-green-700 text-center"><a href={% url 'myapp:storage-add' %}>زیادکردنی کالا</a></div> {% endcomment %}
+    <form method='GET' class="flex-1 text-center">
+        <input class="p-3 w-3/4 bg-gray-700" type='text' name='title' value='{{ request.GET.title }}'>
+        <input class="p-3 bg-green-700" type='submit' value="گەران">
+    </form>
+    {% comment %} <div role="button" class="mx-2 p-3  bg-green-700 text-center"><a href={% url 'myapp:storage-add'
+            %}>زیادکردنی کالا</a></div> {% endcomment %}
 </div>
 
 <ul class="p-3 w-full">
     {% for storage in object_list %}
-    <li class="bg-blue-900 {% if storage.correct_answare == '' %} bg-red-400 {% endif %} p-3 w-full text-lg border-b-2 flex-1 flex-col "><a href="">{{ storage.pk }}  {{ storage.quize }} : {{ storage.text|safe }} </a> <p class=" text-green-400  {% if storage.correct_answare == '' %} text-red-700 {% endif %}"> وەڵامی راست: {{ storage.correct_answare }} {% if storage.correct_answare == '' %} دیارینەکراوە {% endif %} </p></li>
+    <li
+        class="bg-blue-900 {% if storage.correct_answare == '' %} bg-red-400 {% endif %} p-3 w-full text-lg border-b-2 flex-1 flex-col ">
+        <a href="">{{ storage.pk }} {{ storage.quize }} : {{ storage.text|safe }} </a>
+        <p class=" text-green-400  {% if storage.correct_answare == '' %} text-red-700 {% endif %}"> وەڵامی راست: 
+            {{storage.correct_answare }} {% if storage.correct_answare == '' %} دیارینەکراوە {% endif %} </p>
+        <p>{{storage.date_create}}</p>
+    </li>
     {% endfor %}
-    
-<div class="bg-cyan-900 flex flex-row space-x-3 p-2">
-    <span class="step-links">
-        {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.paginator.num_pages }}" class=" text-xl text-green-400">last</a>
-        <a href="?page={{ page_obj.next_page_number }}" class=" text-xl text-green-400"><</a>
-    {% endif %}
 
-        <span class="text-base">
-            پەڕەی {{ page_obj.number }} لە {{ page_obj.paginator.num_pages }}.
+    <div class="bg-cyan-900 flex flex-row space-x-3 p-2">
+        <span class="step-links">
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.paginator.num_pages }}" class=" text-xl text-green-400">last</a>
+            <a href="?page={{ page_obj.next_page_number }}" class=" text-xl text-green-400">
+                << /a>
+                    {% endif %}
+
+                    <span class="text-base">
+                        پەڕەی {{ page_obj.number }} لە {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class=" text-xl text-green-400">></a>
+                    <a href="?page=1" class=" text-xl text-green-400">first</a>
+                    {% endif %}
+
         </span>
-
-        {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}" class=" text-xl text-green-400">></a>
-        <a href="?page=1" class=" text-xl text-green-400">first</a>
-    {% endif %}
-
-    </span>
-</div>
+    </div>
 </ul>
 {% endblock %}

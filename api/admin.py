@@ -22,7 +22,7 @@ class QuestionAdmin(admin.ModelAdmin):
     #     )
     
     model = Question
-    list_display = ('text', 'quize', 'correct_answare','date_create','add_date')
+    list_display = ('id','text', 'quize', 'correct_answare','date_create','add_date')
     list_filter = ['quize']
     inlines = [AnswaresInline]
 
