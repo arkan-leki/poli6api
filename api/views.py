@@ -7,7 +7,7 @@ from api.models import Question
 class QuestionListView(ListView):
     model = Question
     paginate_by = 25
-    ordering = ['-date_create']
+    ordering = ['date_create']
 
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
