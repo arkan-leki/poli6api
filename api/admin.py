@@ -17,9 +17,7 @@ class AnswaresInline(admin.TabularInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     def content(self, obj):
-        return mark_safe(
-            '<a href="%s">%s</a>' % (obj.text, obj.text)
-        )
+        return mark_safe(obj.text)
     
     model = Question
     list_display = ('id','content', 'quize', 'correct_answare','date_create','add_date')
