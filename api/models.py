@@ -119,7 +119,7 @@ class Question(models.Model):
         verbose_name='رێکەوت', auto_now=True, blank=True)
 
     def __str__(self):
-        return f"user{self.pk}  {self.quize}"
+        return f"prysary {self.pk}  {self.quize}"
 
     @property
     def correct_answare(self):
