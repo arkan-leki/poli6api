@@ -1,5 +1,5 @@
 from django.contrib import admin
-# from django.utils.html import mark_safe # Newer versions
+from django.utils.html import mark_safe # Newer versions
 from api.models import Account, Question, Answare, Quize, Result
 
 # Register your models here.
@@ -16,13 +16,13 @@ class AnswaresInline(admin.TabularInline):
     extra = 4
 
 class QuestionAdmin(admin.ModelAdmin):
-    # def content(self, obj):
-    #     return mark_safe(
-    #         '<a href="%s">%s</a>' % (obj.text, obj.text)
-    #     )
+    def content(self, obj):
+        return mark_safe(
+            '<a href="%s">%s</a>' % (obj.text, obj.text)
+        )
     
     model = Question
-    list_display = ('id','text', 'quize', 'correct_answare','date_create','add_date')
+    list_display = ('id','content', 'quize', 'correct_answare','date_create','add_date')
     list_filter = ['quize']
     inlines = [AnswaresInline]
 
