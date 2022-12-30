@@ -12,6 +12,8 @@ db.sqlite3
 
 # Backup files # 
 *.bak 
+*.sql
+*.csv
 
 # If you are using PyCharm # 
 # User-specific stuff
@@ -140,3 +142,4 @@ GitHub.sublime-settings
 .history
 
 /staticfiles
+quiz.csv
