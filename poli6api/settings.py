@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'poli6api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'poli6',
+        'USER': 'arkan',
+        'PASSWORD': 'AyNwCoERsaKdm1Tey2ndsZlyrFlf4LjN',
+        'HOST': 'dpg-cedg52arrk08focki5d0-a',
+        'PORT': '5432',
     }
 }
 
