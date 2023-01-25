@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'poli6',
         'USER': 'arkan',
         'PASSWORD': 'AyNwCoERsaKdm1Tey2ndsZlyrFlf4LjN',
-        'HOST': 'dpg-cedg52arrk08focki5d0-a',
+        'HOST': 'dpg-cedg52arrk08focki5d0-a.frankfurt-postgres.render.com',
         'PORT': '5432',
     }
 }
