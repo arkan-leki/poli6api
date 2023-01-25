@@ -1,0 +1,20 @@
+databases:
+  - name: poli6
+    databaseName: poli6
+    user: arkan
+
+services:
+  - type: web
+    name: poli6
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn poli6api.wsgi:application"
+    envVars:
+      - key: postgres://arkan:AyNwCoERsaKdm1Tey2ndsZlyrFlf4LjN@dpg-cedg52arrk08focki5d0-a/poli6
+        fromDatabase:
+          name: poli6
+          property: postgres://arkan:AyNwCoERsaKdm1Tey2ndsZlyrFlf4LjN@dpg-cedg52arrk08focki5d0-a/poli6
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
