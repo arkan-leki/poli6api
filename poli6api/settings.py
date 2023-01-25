@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
-import django_heroku
+# import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-e!+e&#si58lgy#^#@038*j0zb95$ftr6r=$uxb9=%1447601by
 DEBUG = True
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]','poli6api.herokuapp.com','https://poli6api.herokuapp.com/']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]','poli6api.herokuapp.com','https://poli6api.herokuapp.com/']
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -139,4 +140,4 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
